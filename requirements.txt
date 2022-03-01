@@ -1,0 +1,9 @@
+SpeechRecognition
+pyttsx3
+pywhatkit
+pyjokes
+wikipedia
+geopy
+psutil
+beautifulsoup4
+requests
