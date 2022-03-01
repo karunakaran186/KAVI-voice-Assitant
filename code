@@ -10,7 +10,9 @@ import os
 import psutil
 from bs4 import BeautifulSoup
 import requests
-
+from ecapture import ecapture as ec
+import wolframalpha
+import subprocess
 
 
 
@@ -94,6 +96,11 @@ def run_kavi():
         cpu_usage = (load15 / os.cpu_count()) * 100
         cd = ("My health was in good condition because your'e using me in good way (cpu usage) : ", cpu_usage)
         talk(cd)
+    elif "camera" in command or "take a photo" in command:
+        ec.capture(0,"robo camera","img.jpg")
+    elif "log off" in statement or "sign out" in statement:
+        talk("Ok , your pc will log off in 10 sec make sure you exit from all applications")
+        subprocess.call(["shutdown", "/l"])
     elif 'memory' in command:
         bc = (psutil.virtual_memory()[2])
         talk(bc)
