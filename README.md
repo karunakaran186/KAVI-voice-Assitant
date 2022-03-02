@@ -40,9 +40,20 @@ Then, You got here right!!
 &nbsp;
 
 ## 📌 Introduction
-Hey there, Kavi is basically a virtual assistant in which it help us to know various things. Such as it will help you in to knwo, What time it is, Whats the temp, Where am i and Translating one language to an desired language, etc. Sound's good right?
+Hey there! 
+Let me introduce Kavi. Kavi is basically a virtual assistant who helps us to know various things by answering our queries.
 
-The Main Motive of this project is to make you feel comfortable in building some cool stuffs and project like this.You can also start your journey to open source contribution through this project by contributing.
+Imagine, suddenly curiosity strikes your mind for knowing the unknown stuffs...Boom! Kavi is there to help you out!
+
+For example, when you are rushing for your fight and while driving your car to the airport you notice with a sudden that you forgot to put on your hand-watch! These time you may be searching for a voice assistant so that your eyes don't get too much distracted from the roads. Don't worry. Just ask Kavi. It will answer!
+
+Only this?...Not at all..!
+
+If you ask it, Kavi will also let you know what the temp is and also What the location is! It can also Translate one language to an desired language and can do much more stuffs like this! Sound's good right?
+
+The Main Motive of this project is to make you feel comfortable in building some cool stuffs and project like this.You can also start your journey to open source contribution through contributing in this project.
+
+What we have for you here?
 
 What we have for you here? 
 
