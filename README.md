@@ -128,7 +128,7 @@ GitHub will alert you that you can merge the two branches because there is no co
 ![create pr](https://user-images.githubusercontent.com/66662965/115048337-161c5b80-9ef7-11eb-9d6d-959224497c0f.png)
 
 #### <ins> Step 6: You just made your contributions :clap: </ins>
-Welcome to the Opensource community! 🎉✌🏻🙌🏻
+Welcome to the Opensource community! happy coding! 🎉✌🏻🙌🏻
 
 <hr> </hr>
 
