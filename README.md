@@ -40,7 +40,7 @@ Then, You got here right!!
 &nbsp;
 
 ## 📌 Introduction
-Hey there, Kavi is basically a virtual assistant in which it help us to know various things. Such as it will help you in to knwo, What time it is, Whats the temp, Where am i and Translating one language to an desired language, etc. Sound's good right?
+Hey there, Kavi is basically a virtual assistant in which it help us to know various things. Such as it will help you in to know, What time it is, Whats the temp, Where am i and Translating one language to an desired language, etc. Sound's good right?
 
 The Main Motive of this project is to make you feel comfortable in building some cool stuffs and project like this.You can also start your journey to open source contribution through this project by contributing.
 
