@@ -41,5 +41,5 @@ jobs:
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           author: "${{github.actor}}"
-          repo: Suvraneel/Automated-assign-labeler #Change the Repo name
-          maxIssue: 3
+          repo: karunakaran186/KAVI-voice-Assitant #Change the Repo name
+          maxIssue: 4
