@@ -41,5 +41,9 @@ jobs:
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           author: "${{github.actor}}"
-          repo: Suvraneel/Automated-assign-labeler #Change the Repo name
+          repo: karunakaran186/KAVI-voice-Assitant #Change the Repo name
+          ignore-comments: true
+          labels-synonyms: '{"bug":["error","need fix","not working"],"enhancement":["upgrade"],"question":["help"]}'
+          labels-not-allowed: '["good first issue"]'
+          default-labels: '["Gssoc 2022"]'
           maxIssue: 3
