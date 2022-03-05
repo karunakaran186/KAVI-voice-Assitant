@@ -4,13 +4,13 @@ def getJoke():
     url = 'https://v2.jokeapi.dev/joke/Any'
     response = requests.get(url)
     jokes = response.json()
-    joke = ['The funniest thing about APIs is that they never work on time.']
+    joke = 'The funniest thing about APIs is that they never work on time.'
     if jokes['error'] == False:
         if jokes['type'] == 'single':
-            joke = [jokes['joke'].replace('\"', '')]
+            joke = jokes['joke'].replace('\"', '')
         else:
-            joke = [jokes['setup'].replace(
-                '\"', ''), jokes['delivery'].replace('\"', '')]
+            joke = jokes['setup'].replace(
+                '\"', '') + jokes['delivery'].replace('\"', '')
     return joke
 
 
