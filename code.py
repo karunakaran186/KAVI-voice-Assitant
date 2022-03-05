@@ -1,8 +1,6 @@
 import speech_recognition as sr
 import pyttsx3
 import pywhatkit
-import pyjokes
-import wikipedia
 import webbrowser
 import requests
 from email.mime import audio
@@ -87,26 +85,30 @@ if __name__ == '__main__':
 
         elif 'who is' in command:
             person = command.replace('who is', '')
-            source = wikipedia.summary(person, 100)
+            from components.apis import getWikipedia
+            source = getWikipedia(person)
             print(source)
             talk(source)
 
 
         elif 'search' in command:
             info = command.replace('search', '')
-            general = wikipedia.search(info, 100)
+            from components.apis import getWikipedia
+            general = getWikipedia(info)
             print(general)
             talk(general)
 
         elif 'history' in command:
             gen = command.replace('history, battle, movie review', '')
-            small = wikipedia.summary(gen, 100)
+            from components.apis import getWikipedia
+            small = getWikipedia(gen)
             print(small)
             talk(small)
 
         elif 'movie review' in command:
             movie = command.replace('movie review', '')
-            small = wikipedia.summary(movie, 10)
+            from components.apis import getWikipedia
+            small = getWikipedia(movie)
             print(small)
             talk(small)
 
@@ -119,7 +121,8 @@ if __name__ == '__main__':
         elif 'cringe' in command:
             talk('alright........he/she was funniest perosn')
         elif 'joke' in command:
-            joke = pyjokes.get_joke()
+            from components.apis import getJoke
+            joke = getJoke()
             print(joke)
             talk(joke)
         elif 'i am tired' in command:
