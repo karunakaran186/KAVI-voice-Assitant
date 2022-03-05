@@ -10,7 +10,7 @@ def getJoke():
             joke = jokes['joke'].replace('\"', '')
         else:
             joke = jokes['setup'].replace(
-                '\"', '') + jokes['delivery'].replace('\"', '')
+                '\"', '') +'\n'+ jokes['delivery'].replace('\"', '')
     return joke
 
 
@@ -21,4 +21,7 @@ def getWikipedia(TOPIC):
     DATA = 'The wikimedia server is likely to be down.'
     if R.status_code == 200:
         DATA = R.json()['extract']
-    print(DATA)
+    return DATA
+
+print(getJoke())
+print(getWikipedia('Amitabh Bachan'))
