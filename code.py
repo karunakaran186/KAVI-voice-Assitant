@@ -8,6 +8,11 @@ import requests
 from email.mime import audio
 from numpy import place
 from setuptools import Command
+import cv2
+import pyautogui
+import psutil
+import numpy as np
+import os
 
 
 listener = sr.Recognizer()
@@ -55,6 +60,38 @@ def take_command():
             return "Not Found"
             print("command")
         return command
+
+
+def screen_record():                                                                   #Screen Recording function              
+                                                                                       
+    user = psutil.users()[0].name                                                     #gets the user name 
+    f_path = "C:\\Users\\" + user + "\\Desktop"       
+    # f_path = input("Enter where u want to save the file")                            #can also have an option as to where the user wants to save the file
+    save_file = os.path.join(f_path,"output.mp4")                                      #saves the file in the corresponding directory
+
+    s_size = (1920,1080)
+    fps = 30.0                                                                        #determines how fast the slow the playback speed will be
+
+    fcc = cv2.VideoWriter_fourcc(*"mp4v")
+    out = cv2.VideoWriter(save_file,fcc,fps,(s_size))
+
+    while 1:
+
+        img = pyautogui.screenshot()
+        frm = np.array(img)
+        frm = cv2.cvtColor(frm,cv2.COLOR_BGR2RGB)
+        cv2.imshow("recorder",frm)
+        cv2.namedWindow("recorder",cv2.WINDOW_NORMAL)
+        cv2.resizeWindow("recorder", 800,800)
+        out.write(frm)
+        
+        key = cv2.waitKey(1)                                                             # q to close the window and stop recording
+        if key == 113:
+            break
+
+    cv2.destroyAllWindows()
+    out.release()
+
 
 
 print("Loading your AI personal Assistant kavi")
@@ -141,6 +178,12 @@ if __name__ == '__main__':
             talk("User asked to Locate")
             talk(location)
             webbrowser.open("https://www.google.nl/maps/place/" + location + "")
+
+        elif "screen recording" in command:
+            talk('press q to stop and save recording')
+            print('press q to stop and save recording')
+            screen_record()
+
 
         elif "weather" in command:
             api_key = "51d5d78391e312e72cde67174f38e770"
