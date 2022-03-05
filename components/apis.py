@@ -18,10 +18,10 @@ def getWikipedia(TOPIC):
     S = requests.Session()
     URL = 'https://en.wikipedia.org/api/rest_v1/page/summary/'+ TOPIC
     R = S.get(url=URL)
-    DATA = 'The wikimedia server is likely to be down.'
+    DATA = 'The wikimedia server is likely to~ be down.'
     if R.status_code == 200:
         DATA = R.json()['extract']
     return DATA
 
-print(getJoke())
-print(getWikipedia('Amitabh Bachan'))
+# print(getJoke())
+# print(getWikipedia('Amitabh Bachan'))
