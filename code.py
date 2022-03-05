@@ -1,3 +1,4 @@
+import subprocess
 import speech_recognition as sr
 import pyttsx3
 import pywhatkit
@@ -9,6 +10,7 @@ from email.mime import audio
 from numpy import place
 from setuptools import Command
 
+import os
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
@@ -109,6 +111,18 @@ if __name__ == '__main__':
             small = wikipedia.summary(movie, 10)
             print(small)
             talk(small)
+        
+        elif 'open calculator' in command:
+            talk('opening calculator')
+            subprocess.call('calc.exe')
+
+        elif 'open word document' in command:
+            talk('Opening Word document')
+            os.startfile(r'WINWORD.EXE')
+
+        elif 'open notepad' in command:
+            talk('Open Notepad')
+            os.startfile(r'NOTEPAD.EXE')
 
         elif 'are you single' in command:
             talk('no......um.i am in relationship with wireless devices')
