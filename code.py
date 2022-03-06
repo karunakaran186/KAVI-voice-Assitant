@@ -8,6 +8,7 @@ import requests
 from email.mime import audio
 from numpy import place
 from setuptools import Command
+import random;
 
 
 listener = sr.Recognizer()
@@ -168,5 +169,21 @@ if __name__ == '__main__':
                       str(city_humidiy) +
                       "\n description = " +
                       str(weather_description))
+
+        elif "flip a coin" in command:
+            head = random.randint(0,1)
+            if(head):
+                talk("It is a head, pal")
+                print("It is a head,pal")
+            else:
+                talk("it is a tail")
+                print("It is a tail")
+        
+        elif "pick a number"in command:
+            num = random.randint(1,10)
+            talk(f"Your lucky number is {num}.")
+            print(f"Your lucky number is {num}.")
+            
+
 
 
