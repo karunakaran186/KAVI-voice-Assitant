@@ -7,13 +7,21 @@ import webbrowser
 import requests
 from email.mime import audio
 from numpy import place
+from PIL import Image
 from setuptools import Command
-
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
+
+def img_requests(txt):
+    response=requests.get("https://source.unsplash.com/random{0}".format(txt))
+    file=open('container.jpg','wb')
+    file.write(response.content)
+    img=Image.open(r"container.jpg")
+    img.show()
+    file.close
 
 
 def talk(text):
@@ -63,15 +71,49 @@ talk("Loading your AI personal Assistant kavi")
 if __name__ == '__main__':
 
     while True:
-        talk("Tell me Sir! How can I help you?")
-        print("Tell me Sir! How can I help you?")
+        talk("Tell me! How can I help you?")
+        print("Tell me! How can I help you?")
         command = take_command().lower()
 
         if "exit" in command or "stop" in command or "shutdown" in command:
-            talk("Your AI assistant kavi is shutting down,Good bye Sir and have a good day (:")
-            print("Your AI assistant kavi is shutting down,Good bye Sir and have a good day (:")
+            talk("Your AI assistant kavi is shutting down,Good bye and have a good day (:")
+            print("Your AI assistant kavi is shutting down,Good bye and have a good day (:")
             break
 
+        elif 'images' in command:
+           
+            print("""Please provide an option for Image
+        # 1, HD Random Picture
+        # 2, FHD Random Picture
+        # 3, 2K Random Picture
+        # 4, 4k Random Picture
+        # 5, Picture with User Provided Keywords """)
+            talk("""Please provide an option for Image
+        # 1, HD Random Picture
+        # 2, FHD Random Picture
+        # 3, 2K Random Picture
+        # 4, 4k Random Picture
+        # 5, Picture with User Provided Keywords """)
+            ans=take_command()           
+            talk("Please wait while we fetch the images from our database.")
+            if 'one' in ans or '1' in ans or 'won' in ans:
+                img_requests('/1280x720')
+            elif 'two' in ans or '2' in ans or 'tu' in ans:            
+                img_requests('/1920x1080')
+            elif 'three' in ans or '3' in ans or 'tree' in ans or 'free' in ans:
+                img_requests('/2048x1080')
+            elif 'four' in ans or '4' in ans or 'for' in ans:
+                img_requests('/4096x2160')
+            elif 'five' in ans or '5' in ans  or 'fibe' in ans:
+                talk("speak keywords seperated by commas ")
+                st=take_command()
+                if 'comma' in st:
+                    st.replace('comma',',')
+                st="?"+st
+                img_requests(st)
+            else:
+                talk("Please provide a valid Input")
+       
         elif 'play' in command:
             talk('playing')
             print('playing')
@@ -168,5 +210,3 @@ if __name__ == '__main__':
                       str(city_humidiy) +
                       "\n description = " +
                       str(weather_description))
-
-
