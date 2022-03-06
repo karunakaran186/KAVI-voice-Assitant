@@ -1,5 +1,7 @@
+import json
 import os
 import subprocess
+from urllib.request import urlopen
 import speech_recognition as sr
 import pyttsx3
 import pywhatkit
@@ -178,7 +180,23 @@ if __name__ == '__main__':
             talk('i can cook you up amazing bedtime stories if you want')
         elif 'who is your friend' in command:
             talk('her name is nilla voice assistant, she was in another repository')
+        elif 'news' in command:
+            try:
+                jsonObj = urlopen(
+                'https://newsapi.org/v2/everything?q=tesla&from=2022-02-05&sortBy=publishedAt&apiKey=50f00cec9aab4e3984ad5129762f8b59')
+                data = json.load(jsonObj)
+                i = 1
+                talk('here are some top news from the times of india')
+                print('''=============== TOP HEADLINES ============''' + '\n')
 
+                for item in data['articles']:
+                    print(str(i) + '. ' + item['title'] + '\n')
+                    print(item['description'] + '\n')
+                    talk(str(i) + '. ' + item['title'] + '\n')
+                    i += 1
+
+            except Exception as e:
+                print(str(e))
         elif "where is" in command:
             command = command.replace("where is", "")
             location = command
