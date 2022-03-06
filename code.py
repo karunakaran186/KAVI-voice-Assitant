@@ -1,5 +1,3 @@
-
-import random   
 import speech_recognition as sr
 import pyttsx3
 import pywhatkit
@@ -10,6 +8,7 @@ import requests
 from email.mime import audio
 from numpy import place
 from PIL import Image
+import random
 from setuptools import Command
 
 listener = sr.Recognizer()
