@@ -1,3 +1,5 @@
+import os
+import subprocess
 import speech_recognition as sr
 import pyttsx3
 import pywhatkit
@@ -5,6 +7,9 @@ import pyjokes
 import wikipedia
 import webbrowser
 import requests
+import os
+import psutil
+import datetime
 from email.mime import audio
 from numpy import place
 from PIL import Image
@@ -27,12 +32,24 @@ def img_requests(txt):
 def talk(text):
     engine.say(text)
     engine.runAndWait()
+    
+def wishMe():
+    hour = int(datetime.datetime.now().hour)
+    if hour>=0 and hour<12:
+        talk("Good Morning!")
+
+    elif hour>=12 and hour<18:
+        talk("Good Afternoon!")   
+
+    else:
+       talk("Good Evening!")      
+    
 
 
 hi = 0
 
 if hi == 0:
-    talk('hello iam kkavi')
+    talk('hello iam kavi')
     print('hello iam kavi Voice assistant')
     talk('How are you buddy!!!')
     print('How are you buddy!!!')
@@ -42,6 +59,7 @@ if hi == 0:
     print('think so good')
     talk('what can i do for you buddy')
     print('what can i do for you buddy')
+    wishMe()
 else:
     print('listening')
 
@@ -67,6 +85,14 @@ def take_command():
 
 print("Loading your AI personal Assistant kavi")
 talk("Loading your AI personal Assistant kavi")
+
+
+def get_memory_consumption():
+    pid = os.getpid()
+    py = psutil.Process(pid)
+    memory_use = py.memory_info()[0] / 2. ** 30
+    return memory_use
+
 
 if __name__ == '__main__':
 
@@ -183,6 +209,18 @@ if __name__ == '__main__':
             talk("User asked to Locate")
             talk(location)
             webbrowser.open("https://www.google.nl/maps/place/" + location + "")
+        
+        elif 'open calculator' in command:
+            talk('opening calculator')
+            subprocess.call('calc.exe')
+
+        elif 'open word document' in command:
+            talk('Opening Word document')
+            os.startfile(r'WINWORD.EXE')
+
+        elif 'open notepad' in command:
+            talk('Open Notepad')
+            os.startfile(r'NOTEPAD.EXE')
 
         elif "weather" in command:
             api_key = "51d5d78391e312e72cde67174f38e770"
@@ -210,3 +248,11 @@ if __name__ == '__main__':
                       str(city_humidiy) +
                       "\n description = " +
                       str(weather_description))
+
+
+        elif "health of kavi" in command:
+            memory = get_memory_consumption()
+            talk("I use {0:.2f} GB..".format(memory))
+
+            
+
