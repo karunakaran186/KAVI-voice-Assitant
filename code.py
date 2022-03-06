@@ -1,3 +1,4 @@
+
 import speech_recognition as sr
 import pyttsx3
 import pywhatkit
@@ -211,5 +212,4 @@ if __name__ == '__main__':
                       str(city_humidiy) +
                       "\n description = " +
                       str(weather_description))
-
 
