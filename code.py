@@ -14,6 +14,7 @@ from email.mime import audio
 from numpy import place
 from PIL import Image
 from setuptools import Command
+import wolframalpha
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
@@ -253,6 +254,33 @@ if __name__ == '__main__':
         elif "health of kavi" in command:
             memory = get_memory_consumption()
             talk("I use {0:.2f} GB..".format(memory))
+            
+        elif "open youtube" in command:
+            talk('opening')
+            webbrowser.open("youtube.com")
+            
+        elif "open google" in command:
+            talk('opening')
+            webbrowser.open("google.com")
+            
+        elif "open stackoverflow" in command:
+            talk('opening')
+            webbrowser.open("stackoverflow.com")
+            
+        elif "restart" in command:
+            talk('restarting')
+            subprocess.call(["shutdown", "/r"])
+        
+        elif "calculate" in input.lower():
+            #write your wolframalpha id here
+            app_id = ""
+            client = wolframalpha.Client() # add app_id also here
+            indx = input.lower().split().index('calculate')
+            query = input.split()[indx + 1:]
+            res = client.query(' '.join(query))
+            answer = next(res.results).text 
+            talk("The answer is " + answer)
+            
 
             
 
