@@ -139,8 +139,7 @@ if __name__=='__main__':
             pywhatkit.playonyt(song)
         elif 'whatsapp' in command:
             phno=input()
-            pywhatkit.sendwhatmsg("+91 {}".format(phno), "Please wait while we send the message",
-                                  13, 58)
+            pywhatkit.sendwhatmsg("+91 {}".format(phno), "hello iam kavi,my boss has told me to text any important info",13, 58)
             print("Successfully Sent!")
             continue
         elif 'who is' in command:
