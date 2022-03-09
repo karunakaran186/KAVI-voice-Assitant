@@ -1,26 +1,38 @@
+# Importing Modules for Basic Functionality:
 import os
+import time
 import subprocess
-import speech_recognition as sr
-import pyttsx3
-import pywhatkit
-import pyjokes
-import wikipedia
-import webbrowser
-import requests
-import os
-import psutil
 import datetime
+import requests
 from email.mime import audio
 from numpy import place
-from PIL import Image
 from setuptools import Command
 
+# For Speech Recognition
+import speech_recognition as sr
+
+# Importing Additional Modules for extra functionality
+import pyttsx3
+# import pywhatkit
+# import pyjokes
+from PIL import Image
+# import wikipedia
+import webbrowser
+import wolframalpha
+# import psutil
+
+# Setting up all the necessary Configs for the bot
 listener = sr.Recognizer()
 engine = pyttsx3.init()
+engine.setProperty('rate',170)     
+engine.setProperty('volume',0.7)
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
+client=wolframalpha.Client('33Y4Y4-AQE2783RKY')
 
-def img_requests(txt):
+# Sub Functions Starts here
+# This function will fetch Images
+def img_requests(txt):   
     response=requests.get("https://source.unsplash.com/random{0}".format(txt))
     file=open('container.jpg','wb')
     file.write(response.content)
@@ -28,99 +40,79 @@ def img_requests(txt):
     img.show()
     file.close
 
-
+# This function will talk back
 def talk(text):
+    print(text)
     engine.say(text)
     engine.runAndWait()
     
-def wishMe():
+# This function will initiate the starting of the bot    
+def wishMe():     
     hour = int(datetime.datetime.now().hour)
     if hour>=0 and hour<12:
         talk("Good Morning!")
-
     elif hour>=12 and hour<18:
         talk("Good Afternoon!")   
-
     else:
        talk("Good Evening!")      
-    
+    talk("I am kavi, I am a Virtual Assistant, I am here to help you")
+    engine.setProperty('rate',185)
 
-
-hi = 0
-
-if hi == 0:
-    talk('hello iam kavi')
-    print('hello iam kavi Voice assistant')
-    talk('How are you buddy!!!')
-    print('How are you buddy!!!')
-    talk('doing good right?????')
-    print('doing good right?????')
-    talk('think so good')
-    print('think so good')
-    talk('what can i do for you buddy')
-    print('what can i do for you buddy')
-    wishMe()
-else:
-    print('listening')
-
-
-def take_command():
-    r = sr.Recognizer()
+# This Function will take the voice input from the user
+def take_command():    
+    r = sr.Recognizer()     
     with sr.Microphone() as source:
-        print("Listening...")
-        talk("listening.....")
-        audio = r.record(source, duration=3)
-
-        try:
-            command = r.recognize_google(audio, language='en-in')
-            print(f"user said:{command}\n")
-
-        except Exception as e:
-            talk("Pardon me,Please say that again")
+        time.sleep(1)
+        talk("Listening")
+        r.pause_threshold=0.8                 
+        r.energy_threshold=250                 
+        audio = r.listen(source)      
+        try:            
+            command = r.recognize_google(audio)            
+            print(f"{command}\n")
+            return command
+        except Exception as e:            
             print("Pardon me,Please say that again")
             return "Not Found"
-            print("command")
-        return command
-
-
-print("Loading your AI personal Assistant kavi")
-talk("Loading your AI personal Assistant kavi")
-
-
+                    
+# This function will fetch the overall performance of the computer
 def get_memory_consumption():
     pid = os.getpid()
     py = psutil.Process(pid)
     memory_use = py.memory_info()[0] / 2. ** 30
     return memory_use
-
-
-if __name__ == '__main__':
-
+# This enable's the one time wishing 
+hi = 0
+if hi == 0:
+    wishMe()
+else:
+    hi+=1
+    print('listening')
+if __name__=='__main__':
     while True:
-        talk("Tell me! How can I help you?")
-        print("Tell me! How can I help you?")
         command = take_command().lower()
-
         if "exit" in command or "stop" in command or "shutdown" in command:
             talk("Your AI assistant kavi is shutting down,Good bye and have a good day (:")
-            print("Your AI assistant kavi is shutting down,Good bye and have a good day (:")
             break
-
+        elif 'temperature' in command:
+             talk("Please tell me the location !")
+             location=take_command()
+             query2="weather forecast of {}".format(location)
+             try:   
+                res = client.query(query2)
+                output=next(res.results).text
+                talk("the temperature of the day will be "+output)
+             except Exception as e:
+                print("Sorry Please try again")
         elif 'images' in command:
-           
+            talk("Here are some options you can select from, please provide an number corresponding to your preferred option")                       
             print("""Please provide an option for Image
         # 1, HD Random Picture
         # 2, FHD Random Picture
         # 3, 2K Random Picture
         # 4, 4k Random Picture
         # 5, Picture with User Provided Keywords """)
-            talk("""Please provide an option for Image
-        # 1, HD Random Picture
-        # 2, FHD Random Picture
-        # 3, 2K Random Picture
-        # 4, 4k Random Picture
-        # 5, Picture with User Provided Keywords """)
-            ans=take_command()           
+            ans=input("Enter the number")           
             talk("Please wait while we fetch the images from our database.")
             if 'one' in ans or '1' in ans or 'won' in ans:
                 img_requests('/1280x720')
@@ -128,62 +120,59 @@ if __name__ == '__main__':
                 img_requests('/1920x1080')
             elif 'three' in ans or '3' in ans or 'tree' in ans or 'free' in ans:
                 img_requests('/2048x1080')
-            elif 'four' in ans or '4' in ans or 'for' in ans:
+            elif 'four' in ans or '4' in ans or 'food' in ans or 'for' in ans:
                 img_requests('/4096x2160')
-            elif 'five' in ans or '5' in ans  or 'fibe' in ans:
-                talk("speak keywords seperated by commas ")
+            elif 'five' in ans or '5' in ans or'fibe' in ans:
+                talk("talk keywords seperated by commas ")
                 st=take_command()
                 if 'comma' in st:
                     st.replace('comma',',')
                 st="?"+st
                 img_requests(st)
             else:
-                talk("Please provide a valid Input")
-       
+                talk("Please provide a valid Input")       
         elif 'play' in command:
             talk('playing')
             print('playing')
             song = command.replace('play', '')
             talk('playing ' + song)
             pywhatkit.playonyt(song)
-
         elif 'whatsapp' in command:
-            pywhatkit.sendwhatmsg("+91 93611 40968", "hello iam kavi,my boss has told me to text any important info",
+            phno=input()
+            pywhatkit.sendwhatmsg("+91 {}".format(phno), "Please wait while we send the message",
                                   13, 58)
             print("Successfully Sent!")
             continue
-
         elif 'who is' in command:
             person = command.replace('who is', '')
             source = wikipedia.summary(person, 100)
             print(source)
             talk(source)
-
-
+        elif 'integrate' or 'differentiate' or 'divide' or 'multiply' or 'add' or 'subtract' in command:
+            res = client.query(command)
+            try:
+                output=next(res.results).text
+                talk(output)
+            except Exception as e:
+                talk("Please provide a valid input")
         elif 'search' in command:
             info = command.replace('search', '')
             general = wikipedia.search(info, 100)
-            print(general)
             talk(general)
-
         elif 'history' in command:
             gen = command.replace('history, battle, movie review', '')
             small = wikipedia.summary(gen, 100)
-            print(small)
             talk(small)
-
         elif 'movie review' in command:
             movie = command.replace('movie review', '')
             small = wikipedia.summary(movie, 10)
-            print(small)
             talk(small)
-
         elif 'are you single' in command:
             talk('no......um.i am in relationship with wireless devices')
         elif 'do you like me' in command:
             talk('yes boss definitely')
         elif 'what is your name' in command:
-            talk('My devloper karunakran has named me kkavi')
+            talk('My developer karunakran has named me kkavi')
         elif 'cringe' in command:
             talk('alright........he/she was funniest perosn')
         elif 'joke' in command:
@@ -202,26 +191,21 @@ if __name__ == '__main__':
             talk('i can cook you up amazing bedtime stories if you want')
         elif 'who is your friend' in command:
             talk('her name is nilla voice assistant, she was in another repository')
-
         elif "where is" in command:
             command = command.replace("where is", "")
             location = command
             talk("User asked to Locate")
             talk(location)
-            webbrowser.open("https://www.google.nl/maps/place/" + location + "")
-        
+            webbrowser.open("https://www.google.nl/maps/place/" + location + "")     
         elif 'open calculator' in command:
             talk('opening calculator')
             subprocess.call('calc.exe')
-
         elif 'open word document' in command:
             talk('Opening Word document')
             os.startfile(r'WINWORD.EXE')
-
         elif 'open notepad' in command:
             talk('Open Notepad')
             os.startfile(r'NOTEPAD.EXE')
-
         elif "weather" in command:
             api_key = "51d5d78391e312e72cde67174f38e770"
             base_url = "https://api.openweathermap.org/data/2.5/weather?"
@@ -248,11 +232,10 @@ if __name__ == '__main__':
                       str(city_humidiy) +
                       "\n description = " +
                       str(weather_description))
-
-
-        elif "health of kavi" in command:
+        elif "health of kavi" in command:            
             memory = get_memory_consumption()
             talk("I use {0:.2f} GB..".format(memory))
-
+        else:
+            talk("Sorry I did'nt get that")
             
 
