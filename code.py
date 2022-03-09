@@ -13,13 +13,13 @@ import speech_recognition as sr
 
 # Importing Additional Modules for extra functionality
 import pyttsx3
-# import pywhatkit
-# import pyjokes
+import pywhatkit
+import pyjokes
 from PIL import Image
-# import wikipedia
+import wikipedia
 import webbrowser
 import wolframalpha
-# import psutil
+import psutil
 
 # Setting up all the necessary Configs for the bot
 listener = sr.Recognizer()
@@ -237,4 +237,3 @@ if __name__=='__main__':
             talk("I use {0:.2f} GB..".format(memory))
         else:
             talk("Sorry I did not get that")
-            
