@@ -91,7 +91,7 @@ else:
 if __name__=='__main__':
     while True:
         command = take_command().lower()
-        if "exit" in command or "stop" in command or "shutdown" in command:
+        if "exit" in command or "stop" in command or "shutdown" or "shut down" in command:
             talk("Your AI assistant kavi is shutting down,Good bye and have a good day (:")
             break
         elif 'temperature' in command:
@@ -236,6 +236,5 @@ if __name__=='__main__':
             memory = get_memory_consumption()
             talk("I use {0:.2f} GB..".format(memory))
         else:
-            talk("Sorry I did'nt get that")
+            talk("Sorry I did not get that")
             
-
