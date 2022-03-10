@@ -307,11 +307,11 @@ if __name__ == '__main__':
             subprocess.call(["shutdown", "/r"])
         
         elif "calculate" in input.lower():
-            #write your wolframalpha id here
+            #app_id is only required if you use the api of wolframalpha
             app_id = ""
-            client = wolframalpha.Client() # add app_id also here
-            indx = input.lower().split().index('calculate')
-            query = input.split()[indx + 1:]
+            client = wolframalpha.Client() # inside the parenthesis, also add the app id, eg :- client("app_id")
+            indx = user_input.lower().split().index('calculate')
+            query = user_input.split()[indx + 1:]
             res = client.query(' '.join(query))
             answer = next(res.results).text 
             talk("The answer is " + answer)
