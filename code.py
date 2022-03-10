@@ -14,7 +14,10 @@ from email.mime import audio
 from numpy import place
 from PIL import Image
 from setuptools import Command
+
 import wolframalpha
+
+import random
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
@@ -213,15 +216,46 @@ if __name__ == '__main__':
         
         elif 'open calculator' in command:
             talk('opening calculator')
-            subprocess.call('calc.exe')
+            try:
+                p=subprocess.call('calc.exe')
+            except TypeError as e:
+                pass
+            except FileNotFoundError as e:
+                print("File not found in the system!")
+                talk("File not found in the system!")
 
         elif 'open word document' in command:
             talk('Opening Word document')
-            os.startfile(r'WINWORD.EXE')
+            try:
+                p=os.startfile(r'WordPad.EXE')
+                raise p
+            except FileNotFoundError as e:
+                try:
+                    q=os.startfile(r'WINWORD.EXE')
+                    raise q
+                except TypeError as e:
+                    pass
+                except FileNotFoundError as e:
+                    print("File not found in the system!")
+                    talk("File not found in the system!")
+            except TypeError as e:
+                pass
 
         elif 'open notepad' in command:
             talk('Open Notepad')
-            os.startfile(r'NOTEPAD.EXE')
+            try:
+                p=os.startfile(r'NOTEPAD.EXE')
+            except TypeError as e:
+                pass
+            except FileNotFoundError as e:
+                print("File not found in the system!")
+                talk("File not found in the system!")
+
+        elif 'get my ip' in command:
+            ip_address=requests.get('https://api64.ipify.org?format=json').json()
+            ip=ip_address
+            print(f'Your ip address is :- {ip["ip"]}')
+            talk(f'Your ip address is :- {ip["ip"]}')    
 
         elif "weather" in command:
             api_key = "51d5d78391e312e72cde67174f38e770"
@@ -254,6 +288,7 @@ if __name__ == '__main__':
         elif "health of kavi" in command:
             memory = get_memory_consumption()
             talk("I use {0:.2f} GB..".format(memory))
+
             
         elif "open youtube" in command:
             talk('opening')
@@ -284,3 +319,15 @@ if __name__ == '__main__':
 
             
 
+        elif "flip a coin" in command:
+            head = random.randint(0,1)
+            if(head):
+                talk("It's a head pal!")
+                print("It's a head pal!")
+            else:
+                talk("It's a tail.")
+                print("It's a tail")
+        elif ("pick" in command and "number"in command) or ("choose" in command and "number" in command):
+            num = random.randint(1,10)
+            talk(f"{num} is your lucky number.")
+            print(f"{num} is your lucky number.")
