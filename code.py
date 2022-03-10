@@ -47,22 +47,26 @@ def wishMe():
     
 
 
-hi = 0
+def welcome():
+    hi = 0
 
-if hi == 0:
-    talk('hello iam kavi')
-    print('hello iam kavi Voice assistant')
-    talk('How are you buddy!!!')
-    print('How are you buddy!!!')
-    talk('doing good right?????')
-    print('doing good right?????')
-    talk('think so good')
-    print('think so good')
-    talk('what can i do for you buddy')
-    print('what can i do for you buddy')
-    wishMe()
-else:
-    print('listening')
+    if hi == 0:
+        print("Loading your AI personal Assistant kavi")
+        talk("Loading your AI personal Assistant kavi")
+
+        talk('hello iam kavi')
+        print('hello iam kavi Voice assistant')
+        talk('How are you buddy!!!')
+        print('How are you buddy!!!')
+        talk('doing good right?????')
+        print('doing good right?????')
+        talk('think so good')
+        print('think so good')
+        talk('what can i do for you buddy')
+        print('what can i do for you buddy')
+        wishMe()
+    else:
+        print('listening')
 
 
 def take_command():
@@ -83,11 +87,6 @@ def take_command():
             print("command")
         return command
 
-
-print("Loading your AI personal Assistant kavi")
-talk("Loading your AI personal Assistant kavi")
-
-
 def get_memory_consumption():
     pid = os.getpid()
     py = psutil.Process(pid)
@@ -98,9 +97,14 @@ def get_memory_consumption():
 if __name__ == '__main__':
 
     while True:
+        welcome()
+
         talk("Tell me! How can I help you?")
         print("Tell me! How can I help you?")
-        command = take_command().lower()
+        try:
+            command = take_command().lower()
+        except e:
+            print("Something went wrong")
 
         if "exit" in command or "stop" in command or "shutdown" in command:
             talk("Your AI assistant kavi is shutting down,Good bye and have a good day (:")
