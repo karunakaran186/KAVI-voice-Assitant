@@ -1,0 +1,213 @@
+{ 
+    "intents":[
+        
+        {
+            "tag":"time",
+
+            "patterns": [  "time",  "current",  "hour", "minute"],
+
+            "responses": [ "time","Current time is "
+            ]
+
+        },
+        {
+            "tag":"date",
+
+            "patterns": [  "date",  "today", "date" ],
+
+            "responses": [ "date"]
+        },
+        {
+            "tag":"day",
+
+            "patterns": [ "din","day", "de", "dee"],
+
+            "responses": [ "day" ]
+        },
+        
+        {
+            "tag":"wikipedia",
+
+            "patterns": [ "who is", "about","search" , "find", "gather information on", "describe", "wikipedia"],
+
+            "responses": [ "wikipedia"
+            ]
+        },
+        {
+            "tag":"google",
+
+            "patterns": [ "what is", "search","google" , "find", "who is"],
+
+            "responses": [ "google" 
+            ]
+        },
+        {
+            "tag":"news",
+
+            "patterns": ["news","hilight","bulletin","reportage","headlines"],
+
+            "responses": [ "news"
+           ]
+        },
+        {
+            "tag":"playmusic",
+
+            "patterns": ["play", "music","song","tune", "melody",
+            "tune",  "find latest"],
+
+            "responses": ["playmusic" 
+           ]
+        },
+        {
+            "tag":"stopmusic",
+
+            "patterns": ["stop music","enough"],
+
+            "responses": ["stoping ....","music is stopped"
+           ]
+        },
+        {
+            "tag":"joke",
+
+            "patterns": ["joke","amuse me","make me laugh","i am feeling sad", "entertain me", "i am bored"],
+
+            "reply" : ["here we go","joke time","hear me carefully","hear out","here's a programmer joke for you", "joke"
+            ],
+            "responses": ["joke"]
+        },
+        {
+           "tag":"weather",
+           
+           "patterns": ["check weather"," sky","do i need to carry an umbrella", "temperature", "atmosphere","wind","air","rain","clouds","sun", "sunlight","snow","cold","hot","warm", "fog", "mist","smog","rainy", "sunny"],
+           
+           "responses": ["weather"
+           ]
+        },
+        
+        {
+           "tag":"repeat",
+           
+           "patterns": ["say that again", "could not listen","unable to understand","can not understand", "repeat"],
+           
+           "responses": ["repeat"
+           ]
+        },
+        
+        {
+           "tag":"alarm",
+           
+           "patterns": ["alarm","wake me up at","reminder"],
+           
+           "responses": ["alarm"
+           ]
+        },
+        
+        {
+           "tag":"good_compliment",
+           
+           "patterns": ["ok","okay","okeah", "fine", "good", "nice", "fantastic", "well", "mindblowing", "eager", "excited", "better", "cool", "noice", "best", "easy", "relaxed","thankyou"],
+           
+           "responses": ["Nice to hear that sir", "Yeah, That's a relief", "cool..!","My pleasure sir", "That feels better" 
+           ]
+        },
+        
+        {
+           "tag":"bad_compliment",
+           
+           "patterns": ["bad","no","worse", "worst", "sad", "ill", "sick", "frustrated", "irritated", "angry", "unhappy", "tensed", "stressed", "panic", "bored", "mood off"],
+           
+           "responses": ["Oops!, can I help?", "oh!, sorry to hear that. How can I help","How can I amaze you?", "Let me refresh your mood then, what can I do?", "Something went wrong?", "Is there anything I can help you with?" 
+           ]
+        },
+        
+        {
+           "tag":"wait",
+           
+           "patterns": ["wait", "pause", "hold", "stop", "sleep", "nothing", "inactive", "shutup", "close"],
+           
+           "responses": ["wait" 
+           ]
+        },
+        
+        {
+           "tag":"location",
+           
+            "patterns": ["location of", "find", "where is", "track", "trace", "search", "map", "find the map", "get the map of","where"],
+           
+           "responses": ["location"
+           ]
+        },
+        
+        {
+           "tag":"Positive",
+           
+            "patterns": ["yes", "yeah", "ya","yep","yesh", "yess"],
+           
+           "responses": ["Positive"
+           ]
+        },
+        
+        {
+           "tag":"Negative",
+           
+            "patterns": ["no", "nah", "nope", "naah", "noo", "not"],
+           
+           "responses": ["Negative"
+           ]
+        },
+        {
+         "tag":"greeting",
+
+         "patterns": [ "hello", "hii", "hey", "wake up",  "hola", "hemlo", "hay","excuse me", "hi", "kavi"],
+
+         "responses": [ "Hello Sir",
+             "How are you sir", "Welcome Sir", "Nice to meet you sir",
+             "Here's your assistant","Hi there, how can I help?","Good to see you again!"]
+     },  
+     {
+         "tag":"Bye",
+
+         "patterns": [ "quit","bye", "bbye", "terminate", "see you later", "exit"],
+
+         "responses": ["Thankyou sir",
+             "Nice time, meeting you sir", "Have a good day", "Going to sleep",
+             "Thanks for using me", "Bye", "See you later!", "It will be nice to meet you again","Goodbye!","Sad to see you go :(","Talk to you later"]
+     },
+     {
+         "tag":"Casual Query",
+
+         "patterns": [ "how are you ?", "how is it going ?", "what is up ?", "is all right", "you fine ?", "you all right ?", "what are you doing ?", "wattcha doing?", "how"],
+
+         "responses": [ "Fine sir, what about you ? ",
+              "absolutely good, what about you? ", "absolutely fine, what about you ? ", "Fantastic, what about you ? ",
+             "Just doing my stuff, what about you ?", "Just gathering some data, what about you ? ", "Surfing over the internet, what about you? ",  "just, analyzing the data, what about you?"]
+
+     },
+     {
+         "tag" :"reply",
+         "patterns": [],         
+         "responses" : [ "what else can I do for you?", "what else can I do sir ?", "I am ready for the next one" , "what else you want me to do?","What else sir ?","Anything else which I can do for you sir ?","anything more?", "what else?"]
+     },
+     {
+         "tag" :"wishme",
+         "patterns" : [ "morning","gm","good morning","evening","night","afternoon","noon","gn"],
+         
+         "responses": ["Thank you", "Thankyou sir", "Nice to hear that"]
+         
+     },       
+     
+     {
+         "tag" :"obj_detect",
+         "patterns" : [ "front", "see", "look", "watch", "observe", "examin", "find", "justify", "who", "what", "where","inform"],
+         "responses": ["obj_detect"]
+         
+     },          
+     
+     {
+         "tag" :"navigate",
+         "patterns" :["way", "road","path", "street","highway", "lane","side","turn","signboard","traffic", "trafficsignal", "vehicle", "car", "motorcyle", "bicycle", "truck","guide","navigate", "show"],
+         "responses": ["navigate"]
+     }       
+    ]  
+
+}
