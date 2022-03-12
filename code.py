@@ -308,8 +308,8 @@ if __name__ == '__main__':
         
         elif "calculate" in input.lower():
             #app_id is only required if you use the api of wolframalpha
-            app_id = ""
-            client = wolframalpha.Client() # inside the parenthesis, also add the app id, eg :- client("app_id")
+            app_id = "QKUP6R-PW38AT7WJE"
+            client = wolframalpha.Client("QKUP6R-PW38AT7WJE") # inside the parenthesis, also add the app id, eg :- client("app_id")
             indx = user_input.lower().split().index('calculate')
             query = user_input.split()[indx + 1:]
             res = client.query(' '.join(query))
