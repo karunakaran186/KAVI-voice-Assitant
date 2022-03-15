@@ -13,7 +13,7 @@ import sys
 mapping = {'play':play, 'listen':play, 'images':image, 'where is':locate,
     'locate':locate, 'wattsapp':whattsapp, 'open':open, 'weather':weather,
     'who is':info, 'search':info, 'movie review':info, 'history':info, 'get my ip':IP,
-    'flip a coin':flip_a_coin, 'pick':lucky_no, 'choose':lucky_no, 'health of kavi':health
+    'flip a coin':flip_a_coin, 'pick':lucky_no, 'choose':lucky_no, 'health of kavi':health, 'screen recording':screen_record,
 }
  
 
