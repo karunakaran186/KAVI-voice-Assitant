@@ -19,6 +19,19 @@ listener = sr.Recognizer()
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
+TMDB_API_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+def trending_movies():
+    trending_movies = []
+    get_res = requests.get(
+        f"https://api.themoviedb.org/3/trending/movie/day?api_key={TMDB_API_KEY}").json()
+    
+    results = get_res["results"]
+    for r in results:
+        trending_movies.append(r["original_title"])
+    return trending_movies[:5]
+#trending_movies()
+
 
 def img_requests(txt):
     response=requests.get("https://source.unsplash.com/random{0}".format(txt))
@@ -27,6 +40,7 @@ def img_requests(txt):
     img=Image.open(r"container.jpg")
     img.show()
     file.close
+    
 
 
 def talk(text):
@@ -222,11 +236,17 @@ if __name__ == '__main__':
             talk('Open Notepad')
             os.startfile(r'NOTEPAD.EXE')
 
+        elif "trending movies" in command:
+            talk(f"Here are the list of top 10 Trending Movies are:{trending_movies()}")    
+            print(*trending_movies(), sep='\n')    
+
         elif 'get my ip' in command:
             ip_address=requests.get('https://api64.ipify.org?format=json').json()
             ip=ip_address
             print(f'Your ip address is :- {ip["ip"]}')
             talk(f'Your ip address is :- {ip["ip"]}')    
+            
+            
 
         elif "weather" in command:
             api_key = "51d5d78391e312e72cde67174f38e770"
