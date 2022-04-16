@@ -15,42 +15,15 @@ mapping = {'play':play, 'listen':play, 'images':image, 'where is':locate,
     'who is':info, 'search':info, 'movie review':info, 'history':info, 'get my ip':IP,
     'flip a coin':flip_a_coin, 'pick':lucky_no, 'choose':lucky_no, 'health of kavi':health,
      'volume up':volume_increaser,'increase the volume':volume_increaser,'volume down':volume_decreaser,
-     'decrease the volume':volume_decreaser,'mute':volume_mute,'how much power left':battery_status,'battery':battery_status, 'show notes':show_notes, 'take notes':take_notes
+     'decrease the volume':volume_decreaser,'mute':volume_mute,'how much power left':battery_status,'battery':battery_status, 'show notes':show_notes, 'take notes':take_notes, 'fly away bird':fly_away_bird_game
 }
  
 
 # setting up the listener and speaker
-listener = sr.Recognizer()
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 engine.setProperty('volume',6.0) 
-
-
-
-def take_command():
-    '''
-    This function takes users's voice command and recognizes them.
-    '''
-
-    r = sr.Recognizer()
-    # try taking in command
-    while True: 
-        with sr.Microphone() as source:
-            print("Listening...")
-            talk("listening.....")
-            audio = r.record(source, duration=3)
-
-            try:
-                command = r.recognize_google(audio, language='en-in')
-                print(f"user said:{command}\n")
-                return command
-
-            except Exception as e:
-                # ask user to repeat if there was some error getting/recognizing it clearly 
-                talk("Pardon me,Please say that again")
-                print("Pardon me,Please say that again")    
-    return 
 
 
 
