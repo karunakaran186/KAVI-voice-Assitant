@@ -230,10 +230,15 @@ def func():
                         print("not a valid choise")
                 notdone = task(type, ctx)
             elif task == info:
-                if key == 'search':
-                    notdone = task(command.replace(key, ''), search=True)
-                else:
-                    notdone = task(command.replace(key, ''), summary=True)
+                try:
+                    if key == 'search':
+                        notdone = task(command.replace(key, ''), search=True)
+                    else:
+                        notdone = task(command.replace(key, ''), summary=True)
+                except wikipedia.exceptions.WikipediaException:
+                    talk("Pardon me, but search for what ?")
+                    print("Pardon me, but search for what ?")
+                    return True
             # no for whattsapp?
             elif key == 'whatsapp':
                 notdone = task()
